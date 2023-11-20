@@ -34,6 +34,13 @@ console.log(persone);
 // Stampare su console, per ogni membro del team, le informazioni di nome, ruolo e la stringa della foto
 // per stampare tutti gli elementi nell'array, faremo un ciclo for e al suo interno faremo un console.log di tutti gli lementi dell-array e a sua volta gli oggetti stessi
 
+for (let i = 0; i < persone.length; i++) {
+  for (let key in persone[i]) {
+    console.log(`${key}: ${persone[i][key]}`);
+  }
+  console.log('----');
+}
+
 // MILESTONE 2:
 // Stampare le stesse informazioni su DOM sotto forma di stringhe
 
