@@ -44,4 +44,13 @@ for (let i = 0; i < persone.length; i++) {
 // MILESTONE 2:
 // Stampare le stesse informazioni su DOM sotto forma di stringhe
 
+const elementBody = document.querySelector('body');
+
+for (let i = 0; i < persone.length; i++) {
+  for (let key in persone[i]) {
+    elementBody.innerHTML += `<div>${key}: ${persone[i][key]}</div>`;
+  }
+  elementBody.innerHTML += `<br>`;
+}
+
 // Trasmite un inner html possiamo stampare nel main gli elementi stampati in console
