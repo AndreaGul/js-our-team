@@ -17,7 +17,6 @@ const persone = [
     foto: 'wayne-barnett-founder-ceo.jpg',
   },
   {
-    nome: 'Angela Caroll',
     ruolo: 'Chief Editor',
     foto: 'angela-caroll-chief-editor.jpg',
   },
@@ -43,7 +42,7 @@ const persone = [
   },
 ];
 
-console.log(persone);
+// console.log(persone);
 
 // MILESTONE 1:
 // Stampare su console, per ogni membro del team, le informazioni di nome, ruolo e la stringa della foto
@@ -59,13 +58,46 @@ for (let i = 0; i < persone.length; i++) {
 // MILESTONE 2:
 // Stampare le stesse informazioni su DOM sotto forma di stringhe
 
-const elementBody = document.querySelector('body');
+// const elementBody = document.querySelector('body');
 
-for (let i = 0; i < persone.length; i++) {
-  for (let key in persone[i]) {
-    elementBody.innerHTML += `<div>${key}: ${persone[i][key]}</div>`;
-  }
-  elementBody.innerHTML += `<br>`;
-}
+// for (let i = 0; i < persone.length; i++) {
+//   for (let key in persone[i]) {
+//     elementBody.innerHTML += `<div>${key}: ${persone[i][key]}</div>`;
+//   }
+//   elementBody.innerHTML += `<br>`;
+// }
 
 // Trasmite un inner html possiamo stampare nel main gli elementi stampati in console
+
+//aggiunta degli elementi nel dom tramite il clonamento del template
+//accediamo all'elemento con classe persona del dom
+const elementPersone = document.querySelector('.persone');
+
+//accediamol al template con id template-persone
+const tempaltePersone = document.getElementById('template-persone');
+
+//grazie a un cilco for andiamo a inseirire tutti gli elementi nel dom
+for (let i = 0; i < persone.length; i++) {
+  //definiamo una variabile che ha come valore l'oggetto nell'array
+  const persona = persone[i];
+
+  // ci andiamo a clocare utto il contenuto del frammento nel template Personae
+  const elementTemplatePersona = tempaltePersone.content.cloneNode(true);
+  console.log(elementTemplatePersona);
+
+  //grazie  a querySelecontor e le classi ci andiamo a prendere l'elemento da modificare es. 'elementTemplatePersona.querySelector('.persona .foto img')' rapresenta l'elemento nel dom
+  elementTemplatePersona.querySelector(
+    '.persona .foto img'
+  ).src = `img/${persona.foto}`;
+
+  //se non c'e il nome dell persona nell'oggetto non viene aggiunta
+  if (persona.nome !== undefined) {
+    elementTemplatePersona.querySelector('.persona .nome').innerText =
+      persona.nome;
+  }
+
+  elementTemplatePersona.querySelector('.persona .ruolo').innerText =
+    persona.ruolo;
+
+  elementPersone.append(elementTemplatePersona);
+}
